@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="hi">
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=YOUR_ADSENSE_ID" crossorigin="anonymous"></script>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta http-equiv="refresh" content="3600">
+<title>TechBharat.ai — AI और टेक न्यूज़ (हिंदी)</title>
+
+  <meta name="description" content="TechBharat.ai - ताज़ा AI और टेक खबरें, गाइड और रिव्यू — हिंदी में।">
+  <meta http-equiv="refresh" content="3600"> <!-- Auto-refresh every hour -->
+  <style>
+    body {font-family:system-ui,-apple-system,Segoe UI,Roboto,'Noto Sans Devanagari',sans-serif;margin:0;background:#f7f7f7;color:#111;}
+    header {background:#0f172a;color:white;text-align:center;padding:20px;}
+    header h1 {margin:0;font-size:26px;}
+    header p {font-size:14px;color:#cbd5e1;}
+    .container {max-width:960px;margin:auto;padding:20px;}
+    .news-card {background:white;padding:16px;margin-bottom:16px;border-radius:10px;box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+    .news-card h2 {margin-top:0;font-size:20px;}
+    .meta {color:#555;font-size:13px;margin-bottom:8px;}
+    a {color:#2563eb;text-decoration:none;}
+    footer {background:#0f172a;color:white;text-align:center;padding:20px;margin-top:40px;font-size:14px;}
+    @media (min-width:700px){
+      .grid {display:grid;grid-template-columns:2fr 1fr;gap:16px;}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>TechBharat.ai</h1>
+    <p>AI और टेक की दुनिया की ताज़ा खबरें — हर घंटे अपडेट होती हैं</p>
+  </header>
+
+  <main class="container">
+    <section id="news"></section>
+  </main>
+
+  <footer>
+    © 2025 TechBharat.ai — अपडेट हर घंटे · Developed by TechBharat Bot
+  </footer>
+
+  <script>
+    // -------- CONFIG --------
+    const API_KEY = "04b3dd45c9f94c0ab7af9f9a13e9378d"; // Replace with your NewsAPI.org key
+    const NEWS_URL = `https://newsapi.org/v2/top-headlines?q=AI OR technology OR artificial intelligence OR machine learning&language=en&pageSize=10&apiKey=${API_KEY}`;
+
+    // -------- FETCH + RENDER --------
+    async function loadNews() {
+      const container = document.getElementById('news');
+      container.innerHTML = "<p>लोड हो रहा है...</p>";
+      try {
+        const res = await fetch(NEWS_URL);
+        const data = await res.json();
+        container.innerHTML = "";
+        if (!data.articles || !data.articles.length) {
+          container.innerHTML = "<p>कोई नई खबर नहीं मिली।</p>";
+          return;
+        }
+        data.articles.forEach(a => {
+          const title = a.title || "कोई शीर्षक नहीं";
+          const desc = a.description || "";
+          const url = a.url || "#";
+          const source = a.source?.name || "";
+          const date = a.publishedAt ? new Date(a.publishedAt).toLocaleString("hi-IN") : "";
+
+          const card = document.createElement("div");
+          card.className = "news-card";
+          card.innerHTML = `
+            <h2><a href="${url}" target="_blank">${title}</a></h2>
+            <div class="meta">${source} · ${date}</div>
+            <p>${desc}</p>
+            <p><a href="${url}" target="_blank">पूरा लेख पढ़ें →</a></p>
+          `;
+          container.appendChild(card);
+        });
+      } catch (e) {
+        container.innerHTML = `<p>⚠️ खबरें लोड करने में समस्या हुई। ${e}</p>`;
+      }
+    }
+
+    loadNews();
+  </script>
+</body>
+</html>
