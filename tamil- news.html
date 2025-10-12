@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ta">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>தமிழ் செய்திகள் — TechBharat.ai</title>
+  <meta name="description" content="தமிழ் செய்திகள் — இந்தியாவின் சமீபத்திய தொழில்நுட்பம், அரசியல், சினிமா மற்றும் AI தகவல்கள்.">
+  <meta http-equiv="refresh" content="3600"> <!-- Refresh every hour -->
+  <style>
+    body {font-family:system-ui,-apple-system,Segoe UI,Roboto,'Noto Sans Tamil',sans-serif;margin:0;background:#f8fafc;color:#111;}
+    header {background:#0f172a;color:white;text-align:center;padding:24px;}
+    header h1 {margin:0;font-size:28px;}
+    header p {margin-top:4px;color:#cbd5e1;font-size:14px;}
+    section {margin-bottom:40px;}
+    h2.section-title {background:#e2e8f0;padding:12px;border-left:6px solid #2563eb;border-radius:4px;}
+    .container {max-width:900px;margin:auto;padding:20px;}
+    .news-card {background:white;margin-bottom:18px;padding:16px;border-radius:12px;box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+    .news-card h3 {margin:0;font-size:18px;}
+    .news-card p {margin:8px 0;}
+    .meta {color:#555;font-size:13px;margin-bottom:6px;}
+    a {color:#2563eb;text-decoration:none;}
+    a:hover {text-decoration:underline;}
+    footer {background:#0f172a;color:white;text-align:center;padding:20px;margin-top:40px;font-size:14px;}
+    .nav {text-align:center;margin-top:12px;}
+    .nav a {color:#38bdf8;text-decoration:none;font-weight:500;}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>TechBharat.ai</h1>
+    <p>தமிழ் செய்திகள் — தொழில்நுட்பம், சினிமா, AI மற்றும் முக்கிய செய்திகள் (ஒவ்வொரு மணிநேரத்திலும் புதுப்பிக்கப்படுகிறது)</p>
+    <div class="nav"><a href="index.html">← முதன்மை பக்கத்திற்கு திரும்ப</a></div>
+  </header>
+
+  <main class="container">
+    <section>
+      <h2 class="section-title">🗞️ முக்கிய செய்திகள்</h2>
+      <div id="tamil-top"></div>
+    </section>
+
+    <section>
+      <h2 class="section-title">🎬 சினிமா / பாலிவுட் செய்திகள்</h2>
+      <div id="tamil-cinema"></div>
+    </section>
+
+    <section>
+      <h2 class="section-title">💻 தொழில்நுட்ப செய்திகள்</h2>
+      <div id="tamil-tech"></div>
+    </section>
+
+    <section>
+      <h2 class="section-title">🤖 AI செய்திகள்</h2>
+      <div id="tamil-ai"></div>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 TechBharat.ai — தமிழ் செய்திகள் | புதுப்பிப்பு: ஒவ்வொரு மணிநேரத்திலும்
+  </footer>
+
+  <script>
+    const API_KEY = "1b3aa32d6c8a47df8f7d9b6b4f4d76a1"; // free GNews key
+
+    async function fetchTamilNews(topic, target) {
+      const container = document.getElementById(target);
+      container.innerHTML = "<p>செய்திகள் ஏற்றப்படுகிறது...</p>";
+      try {
+        const res = await fetch(`https://gnews.io/api/v4/search?q=${encodeURIComponent(topic)}&lang=ta&country=in&max=8&apikey=${API_KEY}`);
+        const data = await res.json();
+        container.innerHTML = "";
+        if (!data.articles || !data.articles.length) {
+          container.innerHTML = "<p>செய்திகள் இல்லை.</p>";
+          return;
+        }
+        data.articles.forEach(a => {
+          const title = a.title || "";
+          const desc = a.description || "";
+          const url = a.url || "#";
+          const src = a.source?.name || "";
+          const date = a.publishedAt ? new Date(a.publishedAt).toLocaleString("ta-IN") : "";
+          const card = document.createElement("div");
+          card.className = "news-card";
+          card.innerHTML = `
+            <h3><a href="${url}" target="_blank">${title}</a></h3>
+            <div class="meta">${src} · ${date}</div>
+            <p>${desc}</p>
+            <p><a href="${url}" target="_blank">முழு செய்தியைப் படிக்க →</a></p>
+          `;
+          container.appendChild(card);
+        });
+      } catch (err) {
+        container.innerHTML = `<p>⚠️ பிழை: ${err}</p>`;
+      }
+    }
+
+    // Load Tamil news sections
+    fetchTamilNews("தமிழ் செய்திகள்", "tamil-top");
+    fetchTamilNews("சினிமா OR பாலிவுட்", "tamil-cinema");
+    fetchTamilNews("தொழில்நுட்பம் OR Technology", "tamil-tech");
+    fetchTamilNews("Artificial Intelligence OR AI", "tamil-ai");
+  </script>
+</body>
+</html>
