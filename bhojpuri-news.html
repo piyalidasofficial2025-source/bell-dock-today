@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>TechBharat.ai — भोजपुरी</title>
+<meta name="description" content="TechBharat.ai भोजपुरी खबर"/>
+<!-- Google Analytics placeholder: replace G-XXXXXXXXXX -->
+<!-- AdSense placeholder: replace ca-pub-XXXXXXXXXXXX -->
+
+<style>
+body{font-family:Arial, sans-serif;background:#f6f8fa;margin:0;color:#111}
+header{background:#2e7d32;color:#fff;padding:14px;text-align:center;position:sticky;top:0}
+nav a{color:#c8e6c9;margin:0 8px;text-decoration:none}
+.container{max-width:1100px;margin:18px auto;padding:12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.card{background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,0.08)}
+.card img{width:100%;height:180px;object-fit:cover}
+.card .body{padding:12px}
+.card h3{margin:0 0 8px;color:#2e7d32;font-size:18px}
+footer{background:#2e7d32;color:#fff;padding:12px;text-align:center}
+</style>
+</head>
+<body>
+<header>
+  <h1>TechBharat.ai — भोजपुरी</h1>
+  <nav><a href="index.html">हिन्दी</a> | <a href="tamil-news.html">தமிழ்</a> | <a href="bhojpuri-news.html">भोजपुरी</a></nav>
+</header>
+<div class="container">
+  <div id="news" class="grid"><p>खबर लोड हो रहल बा...</p></div>
+</div>
+<footer>© 2025 TechBharat.ai</footer>
+
+<script>
+const FEED = "https://rss.app/feeds/yXLVz4R3c7m7Lq4N.xml";
+const API = "https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent(FEED);
+
+async function load() {
+  const c = document.getElementById('news');
+  c.innerHTML = '<p>खबर लोड हो रहल बा...</p>';
+  try {
+    const r = await fetch(API + "&_=" + Date.now(), {cache: 'no-store'});
+    const j = await r.json();
+    if(!j.items) throw new Error('No items');
+    c.innerHTML = j.items.slice(0,12).map(function(it){ return `
+      <div class="card">
+        ${it.enclosure && it.enclosure.link ? '<img src="'+it.enclosure.link+'">' : ''}
+        <div class="body">
+          <h3><a href="${it.link}" target="_blank" style="text-decoration:none;color:inherit">${it.title}</a></h3>
+          <p>${(it.description||'').replace(/(<([^>]+)>)/gi, '').slice(0,120)}...</p>
+        </div>
+      </div>
+    `;}).join('');
+  } catch(e) {
+    console.error(e);
+    c.innerHTML = '<p>खबर लोड ना भइल.</p>';
+  }
+}
+load();
+setInterval(load, 60*60*1000);
+</script>
+</body>
+</html>
