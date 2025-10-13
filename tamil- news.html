@@ -1,150 +1,116 @@
 <!doctype html>
 <html lang="ta">
 <head>
+<!-- hitwebcounter Code START -->
 <a href="https://www.hitwebcounter.com/" target="_blank">
 <img src="https://hitwebcounter.com/counter/counter.php?page=21448114&style=0019&nbdigits=5&type=page&initCount=0" title="Conversion Tools" Alt="Conversion Tools"   border="0" /></a>                                    
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
-
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>தமிழ் செய்திகள் — TechBharat.ai</title>
-  <meta name="description" content="தமிழ் செய்திகள் — சமீபத்திய தொழில்நுட்பம், சினிமா, மற்றும் AI செய்திகள்.">
-  <meta http-equiv="refresh" content="3600"> <!-- refresh hourly -->
+  <meta name="description" content="தமிழ் செய்திகள் — இந்தியாவின் சமீபத்திய தொழில்நுட்பம், அரசியல், சினிமா மற்றும் AI தகவல்கள்.">
+  <meta http-equiv="refresh" content="3600"> <!-- Refresh every hour -->
   <style>
     body {font-family:system-ui,-apple-system,Segoe UI,Roboto,'Noto Sans Tamil',sans-serif;margin:0;background:#f8fafc;color:#111;}
-    header {background:#0f172a;color:white;text-align:center;padding:20px;}
-    header h1{margin:0;font-size:24px;}
-    header p{margin:6px 0 0;color:#cbd5e1;}
-    .container{max-width:980px;margin:18px auto;padding:0 16px;}
-    .section-title{background:#eef2ff;padding:10px;border-left:6px solid #2563eb;border-radius:6px;margin-bottom:12px;}
-    .news-grid{display:grid;grid-template-columns:1fr;gap:12px;}
-    @media(min-width:800px){ .news-grid{grid-template-columns:repeat(2,1fr);} }
-    .card{display:flex;gap:12px;background:#fff;padding:12px;border-radius:10px;box-shadow:0 2px 8px rgba(2,6,23,0.06);align-items:flex-start;}
-    .card img{width:140px;height:88px;object-fit:cover;border-radius:8px;flex-shrink:0;background:#eee;}
-    .card .text{flex:1;}
-    .card h3{margin:0 0 6px;font-size:16px}
-    .meta{color:#666;font-size:13px;margin-bottom:8px}
-    a{color:#1e40af;text-decoration:none}
-    a:hover{text-decoration:underline}
-    .nav{margin:12px 0;text-align:center}
-    footer{background:#0f172a;color:#fff;text-align:center;padding:16px;margin-top:28px;font-size:14px}
-    .error{background:#fff7f0;border-left:4px solid #f97316;padding:10px;border-radius:6px;color:#7c2d12;margin-bottom:12px}
+    header {background:#0f172a;color:white;text-align:center;padding:24px;}
+    header h1 {margin:0;font-size:28px;}
+    header p {margin-top:4px;color:#cbd5e1;font-size:14px;}
+    section {margin-bottom:40px;}
+    h2.section-title {background:#e2e8f0;padding:12px;border-left:6px solid #2563eb;border-radius:4px;}
+    .container {max-width:900px;margin:auto;padding:20px;}
+    .news-card {background:white;margin-bottom:18px;padding:16px;border-radius:12px;box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+    .news-card h3 {margin:0;font-size:18px;}
+    .news-card p {margin:8px 0;}
+    .meta {color:#555;font-size:13px;margin-bottom:6px;}
+    a {color:#2563eb;text-decoration:none;}
+    a:hover {text-decoration:underline;}
+    footer {background:#0f172a;color:white;text-align:center;padding:20px;margin-top:40px;font-size:14px;}
+    .nav {text-align:center;margin-top:12px;}
+    .nav a {color:#38bdf8;text-decoration:none;font-weight:500;}
   </style>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HKJWJ9EMGD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-HKJWJ9EMGD');
+</script>
 </head>
 <body>
   <header>
-    <h1>TechBharat.ai — தமிழ் செய்திகள்</h1>
-    <p>தமிழ் செய்திகள் (முந்தைய மற்றும் பிரபல தலைப்புகள்) — புதுப்பிப்பு: ஒவ்வொரு மணிநேரத்திலும்</p>
-    <div class="nav"><a href="index.html" style="color:#38bdf8">← முதன்மை பக்கத்திற்கு திரும்ப</a></div>
+    <h1>TechBharat.ai</h1>
+    <p>தமிழ் செய்திகள் — தொழில்நுட்பம், சினிமா, AI மற்றும் முக்கிய செய்திகள் (ஒவ்வொரு மணிநேரத்திலும் புதுப்பிக்கப்படுகிறது)</p>
+    <div class="nav"><a href="index.html">← முதன்மை பக்கத்திற்கு திரும்ப</a></div>
   </header>
 
   <main class="container">
-    <div id="error-area" aria-live="polite"></div>
-
     <section>
-      <div class="section-title">📰 முக்கிய செய்திகள் (Top Tamil)</div>
-      <div id="top-news" class="news-grid"></div>
+      <h2 class="section-title">🗞️ முக்கிய செய்திகள்</h2>
+      <div id="tamil-top"></div>
     </section>
 
     <section>
-      <div class="section-title">🎬 பாலிவுட் / திரைப்பட செய்திகள்</div>
-      <div id="cinema-news" class="news-grid"></div>
+      <h2 class="section-title">🎬 சினிமா / பாலிவுட் செய்திகள்</h2>
+      <div id="tamil-cinema"></div>
     </section>
 
     <section>
-      <div class="section-title">💻 தொழில்நுட்பம் (Tech)</div>
-      <div id="tech-news" class="news-grid"></div>
+      <h2 class="section-title">💻 தொழில்நுட்ப செய்திகள்</h2>
+      <div id="tamil-tech"></div>
     </section>
 
     <section>
-      <div class="section-title">🤖 AI செய்திகள்</div>
-      <div id="ai-news" class="news-grid"></div>
+      <h2 class="section-title">🤖 AI செய்திகள்</h2>
+      <div id="tamil-ai"></div>
     </section>
   </main>
 
-  <footer>© 2025 TechBharat.ai</footer>
+  <footer>
+    © 2025 TechBharat.ai — தமிழ் செய்திகள் | புதுப்பிப்பு: ஒவ்வொரு மணிநேரத்திலும்
+  </footer>
 
- <script>
-(function(){
-  const defaultImage = "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg";
-  const proxyList = [
-art.ns.cloudflare.com
-leia.ns.cloudflare.com
-"https://api.allorigins.win/raw?url=",
-    "https://corsproxy.io/?"
-  ];
-  const feeds = {
-    top: "https://news.google.com/rss/search?q=தமிழ்&hl=ta&gl=IN&ceid=IN:ta",
-    cinema: "https://news.google.com/rss/search?q=தமிழ்+சினிமா+OR+பாலிவுட்&hl=ta&gl=IN&ceid=IN:ta",
-    tech: "https://news.google.com/rss/search?q=தமிழ்+தொழில்நுட்பம்+OR+டெக்&hl=ta&gl=IN&ceid=IN:ta",
-    ai: "https://news.google.com/rss/search?q=தமிழ்+AI+OR+நுண்ணறிவு&hl=ta&gl=IN&ceid=IN:ta"
-  };
+  <script>
+    const API_KEY="pub_7caabc0b05704bbcb07e3ca68c2ab1a4"; // free GNews key
 
-  // Disable browser caching for this page
-  if ('caches' in window) {
-    caches.keys().then(function(names) {
-      for (let name of names) caches.delete(name);
-    });
-  }
-
-  async function fetchRss(feedUrl) {
-    const proxy = proxyList[Math.floor(Math.random() * proxyList.length)];
-    const url = proxy + encodeURIComponent(feedUrl + "&_=" + Date.now());
-    const res = await fetch(url, { cache: "no-store" });
-    if (!res.ok) throw new Error("Fetch failed: " + res.status);
-    const txt = await res.text();
-    const parser = new DOMParser();
-    return parser.parseFromString(txt, "application/xml");
-  }
-
-  function parseItem(item) {
-    const get = (t) => item.getElementsByTagName(t)[0]?.textContent || "";
-    const title = get("title");
-    const link = get("link") || "#";
-    const pubDate = get("pubDate");
-    const desc = get("description") || "";
-    let img = "";
-    const match = desc.match(/<img[^>]+src="([^">]+)"/i);
-    if (match) img = match[1];
-    return { title, link, pubDate, desc, img: img || defaultImage };
-  }
-
-  function render(items, id) {
-    const c = document.getElementById(id);
-    c.innerHTML = "";
-    items.forEach(n => {
-      const el = document.createElement("div");
-      el.className = "card";
-      el.innerHTML = `
-        <img src="${n.img}" alt="">
-        <div class="text">
-          <h3><a href="${n.link}" target="_blank">${n.title}</a></h3>
-          <div class="meta">${n.pubDate ? new Date(n.pubDate).toLocaleString("ta-IN") : ""}</div>
-          <p>${n.desc.replace(/<[^>]*>?/gm, "").slice(0,150)}...</p>
-        </div>`;
-      c.appendChild(el);
-    });
-  }
-
-  async function load(feed, id) {
-    try {
-      const xml = await fetchRss(feed);
-      const items = Array.from(xml.getElementsByTagName("item")).slice(0, 6).map(parseItem);
-      render(items, id);
-    } catch (e) {
-      console.error("Error loading", feed, e);
-      document.getElementById(id).innerHTML = "<p style='color:red'>செய்திகளை ஏற்ற முடியவில்லை.</p>";
+    async function fetchTamilNews(topic, target) {
+      const container = document.getElementById(target);
+      container.innerHTML = "<p>செய்திகள் ஏற்றப்படுகிறது...</p>";
+      try {
+        const res = await fetch(`https://gnews.io/api/v4/search?q=${encodeURIComponent(topic)}&lang=ta&country=in&max=8&apikey=${API_KEY}`);
+        const data = await res.json();
+        container.innerHTML = "";
+        if (!data.articles || !data.articles.length) {
+          container.innerHTML = "<p>செய்திகள் இல்லை.</p>";
+          return;
+        }
+        data.articles.forEach(a => {
+          const title = a.title || "";
+          const desc = a.description || "";
+          const url = a.url || "#";
+          const src = a.source?.name || "";
+          const date = a.publishedAt ? new Date(a.publishedAt).toLocaleString("ta-IN") : "";
+          const card = document.createElement("div");
+          card.className = "news-card";
+          card.innerHTML = `
+            <h3><a href="${url}" target="_blank">${title}</a></h3>
+            <div class="meta">${src} · ${date}</div>
+            <p>${desc}</p>
+            <p><a href="${url}" target="_blank">முழு செய்தியைப் படிக்க →</a></p>
+          `;
+          container.appendChild(card);
+        });
+      } catch (err) {
+        container.innerHTML = `<p>⚠️ பிழை: ${err}</p>`;
+      }
     }
-  }
 
-  load(feeds.top, "top-news");
-  load(feeds.cinema, "cinema-news");
-  load(feeds.tech, "tech-news");
-  load(feeds.ai, "ai-news");
-})();
-</script>
-
+    // Load Tamil news sections
+const url = proxyBase + encodeURIComponent(rssLink) + "&_=" + Date.now();
+setInterval(loadNews, 60 * 60 * 1000); // ?? ???? reload ????
+    fetchTamilNews("தமிழ் செய்திகள்", "tamil-top");
+    fetchTamilNews("சினிமா OR பாலிவுட்", "tamil-cinema");
+    fetchTamilNews("தொழில்நுட்பம் OR Technology", "tamil-tech");
+    fetchTamilNews("Artificial Intelligence OR AI", "tamil-ai");
+  </script>
 </body>
 </html>
