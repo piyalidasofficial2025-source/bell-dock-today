@@ -70,7 +70,7 @@
   </footer>
 
   <script>
-    const API_KEY="pub_7caabc0b05704bbcb07e3ca68c2ab1a4"; // free GNews key
+    const API_KEY="04b3dd45c9f94c0ab7af9f9a13e9378d"; // free GNews key
 
     async function fetchTamilNews(topic, target) {
       const container = document.getElementById(target);
@@ -111,7 +111,8 @@
     fetchTamilNews("Artificial Intelligence OR AI", "tamil-ai");
   const url = proxyBase + encodeURIComponent(rssLink) + "&_=" + Date.now();
 setInterval(loadNews, 60 * 60 * 1000); // ?? ???? reload ????
- loadNews("tech");
+  loadTamilNews();
+ setInterval(loadTamilNews, 60 * 60 * 1000); // Auto update every hour
 </script>
 </body>
 </html>
