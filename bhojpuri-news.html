@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>भोजपुरी खबर - TechBharat.ai</title>
+  <meta name="description" content="भोजपुरी इलाका और टेक्नोलॉजी से जुड़ी ताज़ा खबरें - TechBharat.ai">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+
+  <style>
+    body {
+      font-family: 'Noto Sans Devanagari', Arial, sans-serif;
+      margin: 0; padding: 0;
+      background: #f4f5f7; color: #222;
+    }
+    header {
+      background: linear-gradient(90deg, #1565c0, #1e88e5);
+      color: white; text-align: center; padding: 15px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      position: sticky; top: 0; z-index: 10;
+    }
+    header h1 { margin: 0; font-size: 24px; }
+    nav a {
+      color: #e3f2fd; text-decoration: none;
+      margin: 0 10px; font-weight: 600;
+    }
+    nav a:hover { text-decoration: underline; }
+    .news-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px; padding: 25px;
+    }
+    .news-card {
+      background: #fff; border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      transition: transform 0.25s ease;
+    }
+    .news-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+    .news-card img {
+      width: 100%; height: 220px; object-fit: cover;
+      border-bottom: 3px solid #1565c0;
+    }
+    .news-content { padding: 15px; }
+    .news-content h2 {
+      font-size: 18px; margin: 0 0 10px; color: #1565c0;
+    }
+    .news-content p { font-size: 14px; color: #555; line-height: 1.4; }
+    footer {
+      background: #1565c0; color: white;
+      text-align: center; padding: 10px; font-size: 14px;
+    }
+    @media (max-width: 600px) {
+      header h1 { font-size: 20px; }
+      .news-content h2 { font-size: 16px; }
+      .news-content p { font-size: 13px; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>भोजपुरी खबर - TechBharat.ai</h1>
+    <nav>
+      <a href="index.html">🏠 होम</a>
+      <a href="bhojpuri-news.html">भोजपुरी</a>
+      <a href="tamil-news.html">தமிழ்</a>
+    </nav>
+  </header>
+
+  <div id="news" class="news-container">
+    <p style="text-align:center;">खबर लोड हो रहल बा...</p>
+  </div>
+
+  <footer>
+    © 2025 TechBharat.ai | भोजपुरी इलाका के खबर | हर घंटा नया अपडेट
+  </footer>
+
+  <script>
+    // 🔑 Replace with your actual NewsData.io API key
+    const API_KEY = "pub_fefd285deecd4e7cbb8dd38b5923adb1";
+
+    // Combine multiple relevant search topics (since Bhojpuri is not a separate language)
+    const SEARCH_QUERIES = [
+      "भोजपुरी खबर",
+      "पूर्वांचल समाचार",
+      "गोरखपुर न्यूज",
+      "बिहार पूर्वी खबर",
+      "UP Purvanchal news"
+    ];
+
+    async function loadBhojpuriNews() {
+      const container = document.getElementById('news');
+      container.innerHTML = "<p style='text-align:center;'>खबर लोड हो रहल बा...</p>";
+
+      try {
+        let allArticles = [];
+
+        // Fetch multiple queries to get more results
+        for (const query of SEARCH_QUERIES) {
+          const url = `https://newsdata.io/api/1/news?apikey=${API_KEY}&language=hi&country=in&q=${encodeURIComponent(query)}&_=${Date.now()}`;
+          const res = await fetch(url);
+          const data = await res.json();
+          if (data.results) allArticles = allArticles.concat(data.results);
+        }
+
+        if (allArticles.length === 0) {
+          container.innerHTML = "<p style='text-align:center;'>अभी भोजपुरी इलाका के खबर ना मिलल.</p>";
+          return;
+        }
+
+        // Remove duplicates and limit to 12
+        const uniqueArticles = Array.from(new Map(allArticles.map(a => [a.link, a])).values());
+
+        container.innerHTML = uniqueArticles.slice(0, 12).map(a => `
+          <div class="news-card">
+            <img src="${a.image_url || 'https://via.placeholder.com/400x220?text=Bhojpuri+News'}" alt="news">
+            <div class="news-content">
+              <h2><a href="${a.link}" target="_blank" style="text-decoration:none;color:#1565c0;">${a.title}</a></h2>
+              <p>${a.description ? a.description.slice(0, 120) + '...' : ''}</p>
+            </div>
+          </div>
+        `).join('');
+
+      } catch (e) {
+        console.error(e);
+        container.innerHTML = "<p style='text-align:center;'>खबर लोड ना भइल. बाद में कोशिश करीं.</p>";
+      }
+    }
+
+    loadBhojpuriNews();
+    setInterval(loadBhojpuriNews, 60 * 60 * 1000); // हर घंटे नया डेटा
+  </script>
+</body>
+</html>
